@@ -1,13 +1,20 @@
-import "./App.css";
+import { useEffect, useState } from "react";
+import Navbar from "./scenes";
+import { SelectedPage } from "./shared/types";
 
 function App() {
+  const [selectedPage, setSelectedPage] = useState<SelectedPage>(
+    SelectedPage.DASHBOARD
+  );
+
   return (
     <>
-      <h1 className="font-lato font-extrabold text-6xl">Cardhouse</h1>
-      <div className="flex">
-      <div className="w-[500px] h-[500px] bg-primary"></div>
-      <div className="w-[500px] h-[500px] bg-secondary"></div>
-      <div className="w-[500px] h-[500px] bg-accent"></div>
+      <div className="app">
+        <Navbar
+          selectedPage={selectedPage}
+          setSelectedPage={setSelectedPage}
+        />
+
       </div>
     </>
   );

@@ -19,7 +19,9 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   return (
     <nav>
       <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
-        <div className={`${flexBetween} mx-auto w-5/6 bg-secondary rounded-3xl p-2`}>
+        <div
+          className={`${flexBetween} relative mx-auto w-5/6 bg-secondary rounded-3xl p-2`}
+        >
           <div className={`${flexBetween} w-full gap-16`}>
             {/* LEFT SIDE */}
             <img
@@ -27,6 +29,12 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
               alt="Logo"
               src={Logo}
             />
+
+            {/* CENTER "Cardhouse" */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-background font-extrabold text-4xl font-dynapuff">
+              Cardhouse
+            </div>
+
             {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
@@ -44,7 +52,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                 </div>
                 <div className={`${flexBetween} gap-8`}>
                   <p>Sign In</p>
-                  <ActionButton setSelectedPage={setSelectedPage}>
+                  <ActionButton size="medium" setSelectedPage={setSelectedPage}>
                     btn
                   </ActionButton>
                 </div>

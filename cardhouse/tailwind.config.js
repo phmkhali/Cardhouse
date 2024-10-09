@@ -4,15 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        text: "#080605",
+        text: "#202722",
         background: "#f8f6f3",
         primary: "#9c7c64",
+        "primary-light": "#ba967b",
         secondary: "#b9ccaf",
         accent: "#90b991",
+        "flower-pink": "#d6595d",
       },
       fontFamily: {
-        lato: ["Lato", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        dynapuff: ["DynaPuff", "sans-serif"],
       },
     },
     screens: {

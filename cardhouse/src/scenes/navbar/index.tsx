@@ -57,7 +57,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-                  <ActionButton size="medium" setSelectedPage={setSelectedPage}>
+                  <ActionButton size="medium" color="primary" setSelectedPage={setSelectedPage}>
                     Log In
                     <Link to="/login"></Link>
                   </ActionButton>

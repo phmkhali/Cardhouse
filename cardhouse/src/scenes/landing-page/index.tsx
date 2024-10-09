@@ -4,6 +4,7 @@ import PlantPot from "@/assets/plant-pot.png";
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -31,7 +32,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
           <div></div>
         )}
         {/* TEXT AND BUTTON */}
-        <div className="z-20 flex flex-col md:p-16 justify-center items-center text-center sm:w-2/3 ">
+        <div className="z-20 flex flex-col md:p-12 justify-center items-center text-center sm:w-2/3 ">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -48,6 +49,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
             </h1>
           </motion.div>
           <motion.div
+            className="flex flex-col gap-10 items-center"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.5 }}
@@ -57,25 +59,35 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            <p className="text-xl mt-6 md:mt-2">
+            <p className="text-xl mt-4">
               A Spaced-Repetition-System app you actually want to look at ツ
             </p>
+            <ActionButton
+              setSelectedPage={setSelectedPage}
+              size="medium"
+              color="accent"
+            >
+              Lets start<Link to="/login"></Link>
+            </ActionButton>
           </motion.div>
         </div>
         {isAboveSmallScreens ? (
           <>
             {/* PICTURE BUTTON */}
-            <div className="relative group w-[200px] transition-transform duration-150 hover:scale-110">
+            <Link
+              to="/login"
+              className="relative group w-[200px] transition-transform duration-150 hover:scale-110"
+            >
               <img
                 src={PlantPot}
                 className="object-contain w-full transition-opacity duration-150 group-hover:opacity-80 animate-pulse"
               />
               <p className="absolute inset-0 flex items-center justify-center">
-                <span className="w-96 bg-accent text-white text-center font-dynapuff mt-10 px-2 py-2 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 inline-block white-space-nowrap">
-                  Click to start
+                <span className="w-96 bg-accent text-white text-center mt-10 px-2 py-2 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 inline-block white-space-nowrap">
+                  Let's go!
                 </span>
               </p>
-            </div>
+            </Link>{" "}
           </>
         ) : (
           <div>
@@ -85,9 +97,6 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
                 src={PlantPot}
                 className="object-contain w-[150px] transition duration-150 hover:scale-110 md:w-[200px]"
               />
-              <p className="my-1 font-dynapuff text-md text-center text-accent">
-                *Click to start*
-              </p>
             </div>
           </div>
         )}

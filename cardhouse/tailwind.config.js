@@ -12,8 +12,9 @@ module.exports = {
         accent: "#90b991",
       },
       fontFamily: {
-        lato: ["Lato", "sans-serif"],
-        roboto: ["Roboto", "sans-serif"],
+        montserrat: ["Montserrat", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+        dynapuff: ["DynaPuff", "sans-serif"],
       },
     },
     screens: {

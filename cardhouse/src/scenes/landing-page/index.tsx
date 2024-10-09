@@ -37,16 +37,35 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
             A Spaced-Repetition-System app you actually want to look at ツ
           </p>
         </div>
-        {/* PICTURE BUTTON*/}
-        <div className="z-20">
-          <img
-            src={PlantPot}
-            className="object-contain w-[150px] transition duration-150 hover:scale-110 md:w-[200px]"
-          />
-          <p className="my-1 font-dynapuff text-md text-center text-accent">
-            *Click to start*
-          </p>
-        </div>
+        {isAboveSmallScreens ? (
+          <>
+            {/* PICTURE BUTTON */}
+            <div className="relative group w-[200px] transition-transform duration-150 hover:scale-110">
+              <img
+                src={PlantPot}
+                className="object-contain w-full transition-opacity duration-150 group-hover:opacity-80 animate-pulse"
+              />
+              <p className="absolute inset-0 flex items-center justify-center">
+                <span className="w-96 bg-accent text-white text-center font-dynapuff mt-10 px-2 py-2 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-150 inline-block white-space-nowrap">
+                  Click to start
+                </span>
+              </p>
+            </div>
+          </>
+        ) : (
+          <div>
+            {/* PICTURE BUTTON MOBILE */}
+            <div className="z-20">
+              <img
+                src={PlantPot}
+                className="object-contain w-[150px] transition duration-150 hover:scale-110 md:w-[200px]"
+              />
+              <p className="my-1 font-dynapuff text-md text-center text-accent">
+                *Click to start*
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import { SelectedPage } from "@/shared/types";
 import PlantPot from "@/assets/plant-pot.png";
 import React from "react";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { motion } from "framer-motion";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -22,20 +23,44 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
         {/* DECORATIVE ELEMENTS */}
         {isAboveSmallScreens ? (
           <>
-            <div className="absolute bg-neutral-300 w-[600px] h-[500px] rounded-full -top-[180px] opacity-30" />
+            <div className="absolute bg-neutral-300 w-[550px] h-[500px] rounded-full left-64 -top-[230px] opacity-30" />
+            <div className="absolute bg-primary w-[600px] h-[600px] rounded-full -bottom-[300px] -left-[100px] opacity-80" />
+            <div className="absolute bg-secondary w-[300px] h-[300px] rounded-full bottom-10 right-32 opacity-50" />
           </>
         ) : (
           <div></div>
         )}
         {/* TEXT AND BUTTON */}
         <div className="z-20 flex flex-col md:p-16 justify-center items-center text-center sm:w-2/3 ">
-          <h1 className="font-poppins text-4xl font-bold py-3 sm:text-5xl md:text-6xl leading-tight md:leading-tight">
-            Say Goodbye to Boring{" "}
-            <span className="text-flower-pink">Flashcards</span>.
-          </h1>
-          <p className="text-xl mt-6 md:mt-2">
-            A Spaced-Repetition-System app you actually want to look at ツ
-          </p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <h1 className="font-poppins text-4xl font-bold py-3 sm:text-5xl md:text-6xl leading-tight md:leading-tight">
+              Say Goodbye to Boring{" "}
+              <span className="text-flower-pink">Flashcards</span>.
+            </h1>
+          </motion.div>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+          >
+            <p className="text-xl mt-6 md:mt-2">
+              A Spaced-Repetition-System app you actually want to look at ツ
+            </p>
+          </motion.div>
         </div>
         {isAboveSmallScreens ? (
           <>

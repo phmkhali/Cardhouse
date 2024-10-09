@@ -44,7 +44,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                 </div>
                 <div className={`${flexBetween} gap-8`}>
                   <p>Sign In</p>
-                  <ActionButton setSelectedPage={setSelectedPage}>
+                  <ActionButton size="medium" setSelectedPage={setSelectedPage}>
                     btn
                   </ActionButton>
                 </div>

@@ -16,7 +16,7 @@ const sizeClasses = {
 const ActionButton = ({ children, setSelectedPage, size }: Props) => {
   return (
     <AnchorLink
-      className={`w-fit bg-accent transition ease-in-out delay-150 hover:bg-primary-light ${sizeClasses[size]}`}
+      className={`w-fit bg-primary transition ease-in-out delay-150 hover:bg-primary-light hover:text-background ${sizeClasses[size]}`}
       onClick={() => setSelectedPage(SelectedPage.DECKS)}
       href={`#${SelectedPage.DECKS}`}
     >

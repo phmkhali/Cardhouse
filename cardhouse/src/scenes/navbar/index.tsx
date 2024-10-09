@@ -20,7 +20,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
     <nav>
       <div className={`${flexBetween} fixed top-0 z-30 w-full py-6`}>
         <div
-          className={`${flexBetween} relative mx-auto w-5/6 bg-secondary rounded-3xl p-2`}
+          className={`${flexBetween} relative mx-auto w-5/6 bg-secondary rounded-3xl py-2 px-4`}
         >
           <div className={`${flexBetween} w-full gap-16`}>
             {/* LEFT SIDE */}
@@ -31,7 +31,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             />
 
             {/* CENTER "Cardhouse" */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 text-background font-extrabold text-4xl font-dynapuff">
+            <div className="absolute left-1/2 transform -translate-x-1/2 text-background font-extrabold text-3xl md:text-4xl font-dynapuff">
               Cardhouse
             </div>
 
@@ -40,7 +40,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
               <div className={`${flexBetween} w-full`}>
                 <div className={`${flexBetween} gap-8 text-sm`}>
                   <Link
-                    page="Dashboard"
+                    page="Home"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
@@ -51,9 +51,13 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                   />
                 </div>
                 <div className={`${flexBetween} gap-8`}>
-                  <p>Sign In</p>
+                <Link
+                    page="Sign Up"
+                    selectedPage={selectedPage}
+                    setSelectedPage={setSelectedPage}
+                  />
                   <ActionButton size="medium" setSelectedPage={setSelectedPage}>
-                    btn
+                    Log In
                   </ActionButton>
                 </div>
               </div>
@@ -71,18 +75,18 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
 
       {/* MOBILE MENU MODAL */}
       {!isAboveMediumScreens && isMenuToggled && (
-        <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-primary drop-shadow-xl">
+        <div className="fixed right-0 bottom-0 z-40 h-full w-[300px] bg-secondary drop-shadow-xl">
           {/* CLOSE ICON */}
-          <div className="flex justify-end p-9">
+          <div className="flex justify-end px-12 py-10">
             <button onClick={() => setIsMenuToggled(!isMenuToggled)}>
-              <XMarkIcon className="h-6 w-6 text-gray-400" />
+              <XMarkIcon className="h-8 w-8 text-background" />
             </button>
           </div>
 
           {/* MENU ITEMS */}
           <div className="ml-[33%] flex flex-col gap-10 text-2xl">
             <Link
-              page="Dashboard"
+              page="Home"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />

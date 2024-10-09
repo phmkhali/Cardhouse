@@ -1,4 +1,5 @@
 export enum SelectedPage {
-    DASHBOARD = "dashboard",
-    DECKS = "decks",
-  }
+  HOME = "home",
+  DASHBOARD = "dashboard",
+  DECKS = "decks",
+}

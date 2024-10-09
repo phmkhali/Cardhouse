@@ -1,4 +1,5 @@
 import { SelectedPage } from "@/shared/types";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   page: string;
@@ -6,17 +7,22 @@ type Props = {
   setSelectedPage: (value: SelectedPage) => void;
 };
 
-const Link = ({ page, selectedPage, setSelectedPage }: Props) => {
+const NavLink = ({ page, selectedPage, setSelectedPage }: Props) => {
   const lowerCasePage = page.toLowerCase().replace(/ /g, "-") as SelectedPage;
+  const navigate = useNavigate();
+  const handleClick = () => {
+    setSelectedPage(lowerCasePage);
+    navigate(`/${lowerCasePage}`);
+  };
 
   return (
     <button
       className={`${selectedPage === lowerCasePage ? "text-primary font-bold" : ""} transition duration-500 hover:text-background`}
-      onClick={() => setSelectedPage(lowerCasePage)}
+      onClick={handleClick}
     >
       {page}
     </button>
   );
 };
 
-export default Link;
+export default NavLink;

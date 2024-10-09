@@ -1,24 +1,26 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Navbar from "./scenes/navbar";
 import { SelectedPage } from "./shared/types";
 import LandingPage from "./scenes/landing-page";
+import Login from "./scenes/account";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
-    SelectedPage.DASHBOARD
+    SelectedPage.HOME
   );
 
   return (
-    <>
+    <Router>
       <div className="app">
         <Navbar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-        <LandingPage
-          selectedPage={selectedPage}
-          setSelectedPage={setSelectedPage}
-        >
-        </LandingPage>
+        <Routes>
+          <Route path="/" element={<LandingPage selectedPage={selectedPage} setSelectedPage={setSelectedPage} />} />
+          <Route path="/home" element={<LandingPage selectedPage={selectedPage} setSelectedPage={setSelectedPage} />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
       </div>
-    </>
+    </Router>
   );
 }
 

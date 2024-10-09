@@ -1,5 +1,5 @@
-import AnchorLink from "react-anchor-link-smooth-scroll";
 import { SelectedPage } from "./types";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   children: React.ReactNode;
@@ -14,14 +14,20 @@ const sizeClasses = {
 };
 
 const ActionButton = ({ children, setSelectedPage, size }: Props) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    setSelectedPage(SelectedPage.LOGIN);
+    navigate("/login");
+  };
+
   return (
-    <AnchorLink
+    <button
       className={`w-fit bg-primary transition ease-in-out delay-150 hover:bg-primary-light hover:text-background ${sizeClasses[size]}`}
-      onClick={() => setSelectedPage(SelectedPage.DECKS)}
-      href={`#${SelectedPage.DECKS}`}
+      onClick={handleClick}
     >
       {children}
-    </AnchorLink>
+    </button>
   );
 };
 

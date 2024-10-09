@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
-import Link from "./Link";
+import NavLink from "./NavLink";
+import { Link } from "react-router-dom";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ActionButton from "@/shared/ActionButton";
@@ -39,25 +40,26 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
                 <div className={`${flexBetween} gap-8 text-sm`}>
-                  <Link
+                  <NavLink
                     page="Home"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
-                  <Link
+                  <NavLink
                     page="Decks"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
                 </div>
                 <div className={`${flexBetween} gap-8`}>
-                <Link
+                  <NavLink
                     page="Sign Up"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
                   <ActionButton size="medium" setSelectedPage={setSelectedPage}>
                     Log In
+                    <Link to="/login"></Link>
                   </ActionButton>
                 </div>
               </div>
@@ -85,12 +87,12 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
 
           {/* MENU ITEMS */}
           <div className="ml-[33%] flex flex-col gap-10 text-2xl">
-            <Link
+            <NavLink
               page="Home"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />
-            <Link
+            <NavLink
               page="Decks"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}

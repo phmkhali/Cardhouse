@@ -14,7 +14,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
 
   return (
     <section
-      id="Home"
+      id="home"
       className="h-[100vh] flex flex-col items-center justify-center relative"
     >
       {/* CONTENT CONTAINER */}

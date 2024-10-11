@@ -30,10 +30,17 @@ const ActionButton = ({ children, setSelectedPage, size, color }: Props) => {
 
   return (
     <button
-      className={`w-fit transition ease-in-out delay-150 hover:bg-primary-light hover:text-background ${sizeClasses[size]} ${colorClasses[color]}`} 
       onClick={handleClick}
+      className={`relative overflow-hidden w-fit group ${sizeClasses[size]} ${colorClasses[color]} hover:bg-accent hover:text-text`}
     >
-      {children}
+      {/* Slider Effect */}
+      <span
+        className="absolute left-0 top-0 w-0 h-full bg-primary transition-all duration-300 group-hover:w-full"
+        style={{ zIndex: 0 }}
+      ></span>
+
+      {/* Button Content */}
+      <span className="relative z-10">{children}</span>
     </button>
   );
 };

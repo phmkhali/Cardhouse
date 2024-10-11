@@ -20,7 +20,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
       className="h-[100vh] w-[100wv] flex flex-col items-center "
     >
       {/* CONTENT CONTAINER */}
-      <div className="rounded-3xl w-[90%] h-full flex flex-col justify-center items-center p-6 relative sm:border sm:shadow-md overflow-hidden">
+      <div className="w-full h-full flex flex-col justify-around items-center p-8 relative sm:border sm:shadow-md overflow-hidden">
         {/* DECORATIVE ELEMENTS */}
         {isAboveSmallScreens ? (
           <>
@@ -64,7 +64,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
             </p>
             <ActionButton
               setSelectedPage={setSelectedPage}
-              size="medium"
+              size="large"
               color="accent"
             >
               Lets start<Link to="/login"></Link>

@@ -39,7 +39,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
             {/* RIGHT SIDE */}
             {isAboveMediumScreens ? (
               <div className={`${flexBetween} w-full`}>
-                <div className={`${flexBetween} gap-8 text-sm`}>
+                <div className={`${flexBetween} gap-8 text-md`}>
                   <NavLink
                     page="Home"
                     selectedPage={selectedPage}
@@ -51,7 +51,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                     setSelectedPage={setSelectedPage}
                   />
                 </div>
-                <div className={`${flexBetween} gap-8`}>
+                <div className={`${flexBetween} gap-8 text-md`}>
                   <NavLink
                     page="Sign Up"
                     selectedPage={selectedPage}

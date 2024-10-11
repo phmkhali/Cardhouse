@@ -17,10 +17,10 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
   return (
     <section
       id="home"
-      className="h-[100vh] flex flex-col items-center justify-center relative"
+      className="h-[100vh] w-[100wv] flex flex-col items-center "
     >
       {/* CONTENT CONTAINER */}
-      <div className="rounded-3xl w-5/6 h-3/4 flex flex-col justify-between items-center mt-6 p-6 relative sm:border sm:shadow-md sm:bg-neutral-100 overflow-hidden">
+      <div className="rounded-3xl w-[90%] h-full flex flex-col justify-center items-center p-6 relative sm:border sm:shadow-md overflow-hidden">
         {/* DECORATIVE ELEMENTS */}
         {isAboveSmallScreens ? (
           <>
@@ -32,7 +32,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
           <div></div>
         )}
         {/* TEXT AND BUTTON */}
-        <div className="z-20 flex flex-col md:p-12 justify-center items-center text-center sm:w-2/3 ">
+        <div className="z-20 mt-6 flex flex-col md:p-12 justify-center text-center marker:sm:w-2/3 ">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -43,7 +43,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
               visible: { opacity: 1, y: 0 },
             }}
           >
-            <h1 className="font-poppins text-4xl font-bold py-3 sm:text-5xl md:text-6xl leading-tight md:leading-tight">
+            <h1 className="font-poppins text-4xl md:mx-auto md:w-2/3 font-bold py-3 sm:text-5xl sm:mx-0 md:text-6xl leading-snug md:leading-tight">
               Say Goodbye to Boring{" "}
               <span className="text-flower-pink">Flashcards</span>.
             </h1>
@@ -95,7 +95,7 @@ const LandingPage = ({ selectedPage, setSelectedPage }: Props) => {
             <div className="z-20">
               <img
                 src={PlantPot}
-                className="object-contain w-[150px] transition duration-150 hover:scale-110 md:w-[200px]"
+                className="object-contain w-[150px] mt-10 transition duration-150 hover:scale-110"
               />
             </div>
           </div>

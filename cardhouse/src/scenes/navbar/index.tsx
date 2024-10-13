@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import NavLink from "./NavLink";
 import { Link } from "react-router-dom";
@@ -6,6 +6,8 @@ import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ActionButton from "@/shared/ActionButton";
 import Logo from "@/assets/cat-logo.png";
+import { auth } from "@/firebaseSetup";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -16,6 +18,31 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   const flexBetween = "flex items-center justify-between";
   const [isMenuToggled, setIsMenuToggled] = useState<boolean>(false);
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
+  const [user, setUser] = useState<any>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+
+  // Monitor auth state and get user data
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  // Handle sign out
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        setUser(null);
+        console.log("User signed out successfully");
+      })
+      .catch((error) => console.error("Error signing out: ", error));
+  };
 
   return (
     <nav>
@@ -46,21 +73,57 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
                     setSelectedPage={setSelectedPage}
                   />
                   <NavLink
-                    page="Decks"
+                    page="Dashboard"
                     selectedPage={selectedPage}
                     setSelectedPage={setSelectedPage}
                   />
                 </div>
+
                 <div className={`${flexBetween} gap-8 text-md`}>
-                  <NavLink
-                    page="Sign Up"
-                    selectedPage={selectedPage}
-                    setSelectedPage={setSelectedPage}
-                  />
-                  <ActionButton size="medium" color="primary" setSelectedPage={setSelectedPage}>
-                    Log In
-                    <Link to="/login"></Link>
-                  </ActionButton>
+                  {user ? (
+                    // Render Profile Dropdown if logged in
+                    <div className="relative">
+                      <button
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="flex items-center gap-2 bg-secondary-500 py-2 font-bold px-4 rounded-full text-white"
+                      >
+                        Hi, {user.displayName || "User"}
+                      </button>
+                      {isDropdownOpen && (
+                        <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                          <div className="py-1">
+                            <Link
+                              to="/profile"
+                              className="block px-4 py-2 text-sm text-gray-700"
+                            >
+                              Profile
+                            </Link>
+                            <button
+                              onClick={handleSignOut}
+                              className="block w-full text-left px-4 py-2 text-sm text-gray-700"
+                            >
+                              Sign Out
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ) : (
+                    <>
+                      <NavLink
+                        page="Sign Up"
+                        selectedPage={selectedPage}
+                        setSelectedPage={setSelectedPage}
+                      />
+                      <ActionButton
+                        size="medium"
+                        color="primary"
+                        setSelectedPage={setSelectedPage}
+                      >
+                        <Link to="/login">Log In</Link>
+                      </ActionButton>
+                    </>
+                  )}
                 </div>
               </div>
             ) : (
@@ -93,7 +156,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
               setSelectedPage={setSelectedPage}
             />
             <NavLink
-              page="Decks"
+              page="Dashboard"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
             />

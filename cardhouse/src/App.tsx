@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./scenes/navbar";
 import { SelectedPage, UserType } from "./shared/types";
 import LandingPage from "./scenes/landing-page";
+import Dashboard from "./scenes/dashboard";
 import Login from "./scenes/account/login";
 import SignUp from "./scenes/account/signup";
 
@@ -39,6 +40,7 @@ function App() {
             />
             <Route path="/login" element={<Login />} />
             <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
       </div>
     </Router>

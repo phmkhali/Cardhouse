@@ -19,29 +19,37 @@ function App() {
     <Router>
       <div className="app">
         <Navbar selectedPage={selectedPage} setSelectedPage={setSelectedPage} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <LandingPage
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              }
-            />
-            <Route
-              path="/home"
-              element={
-                <LandingPage
-                  selectedPage={selectedPage}
-                  setSelectedPage={setSelectedPage}
-                />
-              }
-            />
-            <Route path="/login" element={<Login />} />
-            <Route path="/sign-up" element={<SignUp />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Routes>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <LandingPage
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            }
+          />
+          <Route
+            path="/home"
+            element={
+              <LandingPage
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                selectedPage={selectedPage}
+                setSelectedPage={setSelectedPage}
+              />
+            }
+          />
+        </Routes>
       </div>
     </Router>
   );

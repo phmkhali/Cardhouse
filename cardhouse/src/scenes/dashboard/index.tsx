@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseSetup";
 import { SelectedPage } from "@/shared/types";
+import DeckTile from "./DeckTile";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -29,7 +30,7 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
   }, []);
 
   return (
-    <section id="dashboard" className="h-[100vh] w-[100wv] flex flex-col items-center justify-center mx-6 bg-slate-200">
+    <section id="dashboard" className="h-[100vh] w-[100wv] flex flex-col items-center justify-center mx-6">
         {/* HEADER TEXT */}
       <div className=" w-[90%] h-auto flex flex-col overflow-hidden gap-2">
         <h1 className="text-4xl font-bold text-secondary">
@@ -39,8 +40,21 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
       </div>
       {/* DECKS GALLERY */}
       <h2 className="w-[90%] font-bold text-2xl mt-10">Study Decks</h2>
-      <div className="w-[90%] h-auto flex flex-row gap-4 overflow-hidden bg-flower-pink -500 p-6">
-        <p>f</p>
+      <div className="w-[90%] h-auto flex flex-row flex-wrap overflow-hidden-500 pt-2">
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+        <DeckTile name={"Chinese A1"} deckId={"123"} ></DeckTile>
+
       </div>
     </section>
   );

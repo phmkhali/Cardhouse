@@ -15,7 +15,8 @@ const Dashboard = (props: Props) => {
     try {
       const docRef = await addDoc(collection(db, "deck"), {
           name: "chinese 1",
-          updatedAt: new Date()
+          updatedAt: new Date(),
+          userId: auth.currentUser?.uid || "unknown"
       });
       console.log("Document written with ID: ", docRef.id);
   } catch (error) {

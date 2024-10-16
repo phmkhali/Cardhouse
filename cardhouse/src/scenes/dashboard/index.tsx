@@ -1,11 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseSetup";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/firebaseSetup";
 
 type Props = {};
 
 const Dashboard = (props: Props) => {
   const [displayName, setDisplayName] = useState<string | null>(null);
+
+  const handleClick = async(e: React.MouseEvent) => {
+    e.preventDefault();  
+
+    try {
+      const docRef = await addDoc(collection(db, "deck"), {
+          
+      });
+      console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+      console.error("Error adding document: ", error);
+  }
+  };
+
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -25,7 +43,12 @@ const Dashboard = (props: Props) => {
     return () => unsubscribe();
   }, []);
 
-  return <p>Hi {displayName ? displayName : "Guest"}!</p>;
+  return (
+    <div className="flex justify-content items-center h-[500px] w-[500px] bg-blue-300">
+      <p>Hi {displayName ? displayName : "Guest"}!</p>
+      <button className="h-[50px] w-[60px] bg-red-700" onClick={handleClick}>Test db</button>
+    </div>
+  );
 };
 
 export default Dashboard;

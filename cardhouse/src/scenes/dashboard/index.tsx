@@ -1,14 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseSetup";
-<<<<<<< HEAD
 import { SelectedPage } from "@/shared/types";
 import DeckTile from "./DeckTile";
 import PlantGif from "@/assets/four_plants.gif";
-=======
-import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  setDoc,
+  doc,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "@/firebaseSetup";
->>>>>>> firestore
+import { Deck } from "@/shared/types";
 
 type Props = {
   selectedPage: SelectedPage;
@@ -21,23 +27,37 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
   const getRandomColor = () =>
     colors[Math.floor(Math.random() * colors.length)];
 
-  const handleClick = async(e: React.MouseEvent) => {
-    e.preventDefault();  
+  const q = query(
+    collection(db, "deck"),
+    where("userId", "==", auth.currentUser?.uid || "unknown"),
+  );
+
+  const handleClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
 
     try {
       const docRef = await addDoc(collection(db, "deck"), {
-          name: "chinese 1",
-          updatedAt: new Date(),
-          userId: auth.currentUser?.uid || "unknown"
+        name: "japanese 1",
+        updatedAt: new Date(),
+        userId: auth.currentUser?.uid || "unknown",
       });
       console.log("Document written with ID: ", docRef.id);
-  } catch (error) {
+    } catch (error) {
       console.error("Error adding document: ", error);
-  }
+    }
   };
 
+  const [deckList, setDeckList] = useState<Deck[]>([]); 
 
+  const fetchData = async () => {
+    const querySnapshot = await getDocs(q);
+    const decks: Deck[] = [];
 
+    querySnapshot.forEach((doc) => {
+      decks.push({ id: doc.id, name: doc.data().name }); 
+    });
+    setDeckList(decks);
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -57,7 +77,6 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
   }, []);
 
   return (
-<<<<<<< HEAD
     <section
       id="dashboard"
       className="h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mt-[130px] md:mx-6"
@@ -69,7 +88,21 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
           <h1 className="text-4xl font-bold text-secondary">
             Hi {displayName ? displayName : "Guest"}!
           </h1>
-          <p className="text-lg">Happy to see you here! Let's have a productive study session ^^</p>
+          <p className="text-lg">
+            Happy to see you here! Let's have a productive study session ^^
+          </p>
+          <button
+            onClick={handleClick}
+            className="w-[200px] h-[50px] bg-primary text-white font-bold rounded-full py-2 px-4"
+          >
+            Add data
+          </button>
+          <button
+            onClick={fetchData}
+            className="w-[200px] h-[50px] bg-primary text-white font-bold rounded-full py-2 px-4"
+          >
+            Fetch data
+          </button>
         </div>
         {/* PLANT DIV */}
         <div>
@@ -84,32 +117,16 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
       {/* DECKS GALLERY */}
       <h2 className="w-[90%] font-bold text-2xl mt-4 md:mt-10">Study Decks</h2>
       <div className="w-[90%] h-auto flex flex-row flex-wrap overflow-hidden-500 pt-2">
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
-        <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
+      {deckList.map((deck) => (
+        <DeckTile 
+          key={deck.id} 
+          name={deck.name} 
+          deckId={deck.id} 
+          color={getRandomColor()} 
+        />
+      ))}
       </div>
     </section>
-=======
-    <div className="flex justify-content items-center h-[500px] w-[500px] bg-blue-300">
-      <p>Hi {displayName ? displayName : "Guest"}!</p>
-      <button className="h-[50px] w-[60px] bg-red-700" onClick={handleClick}>Test db</button>
-    </div>
->>>>>>> firestore
   );
 };
 

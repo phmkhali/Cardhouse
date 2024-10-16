@@ -8,3 +8,8 @@ export interface UserType {
   username: string;
   authToken?: string;
 }
+
+export interface Deck {
+  id: string;
+  name: string;
+}

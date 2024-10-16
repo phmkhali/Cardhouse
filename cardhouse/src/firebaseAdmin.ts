@@ -5,7 +5,6 @@ import serviceAccount from './service-account-key.json';
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount as ServiceAccount),
-  databaseURL: 'https://<your-project-id>.firebaseio.com', 
 });
 
 export const firestore = admin.firestore();

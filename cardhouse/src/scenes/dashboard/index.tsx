@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseSetup";
+<<<<<<< HEAD
 import { SelectedPage } from "@/shared/types";
 import DeckTile from "./DeckTile";
 import PlantGif from "@/assets/four_plants.gif";
+=======
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
+import { db } from "@/firebaseSetup";
+>>>>>>> firestore
 
 type Props = {
   selectedPage: SelectedPage;
@@ -15,6 +20,24 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
   const colors = ["bg-flower-pink", "bg-primary", "bg-accent"];
   const getRandomColor = () =>
     colors[Math.floor(Math.random() * colors.length)];
+
+  const handleClick = async(e: React.MouseEvent) => {
+    e.preventDefault();  
+
+    try {
+      const docRef = await addDoc(collection(db, "deck"), {
+          name: "chinese 1",
+          updatedAt: new Date(),
+          userId: auth.currentUser?.uid || "unknown"
+      });
+      console.log("Document written with ID: ", docRef.id);
+  } catch (error) {
+      console.error("Error adding document: ", error);
+  }
+  };
+
+
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -34,6 +57,7 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <section
       id="dashboard"
       className="h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mt-[130px] md:mx-6"
@@ -80,6 +104,12 @@ const Dashboard = ({ selectedPage, setSelectedPage }: Props) => {
         <DeckTile name="Chinese A1" deckId="123" color={getRandomColor()} />
       </div>
     </section>
+=======
+    <div className="flex justify-content items-center h-[500px] w-[500px] bg-blue-300">
+      <p>Hi {displayName ? displayName : "Guest"}!</p>
+      <button className="h-[50px] w-[60px] bg-red-700" onClick={handleClick}>Test db</button>
+    </div>
+>>>>>>> firestore
   );
 };
 

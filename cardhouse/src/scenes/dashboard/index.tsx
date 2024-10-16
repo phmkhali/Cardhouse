@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/firebaseSetup";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc } from "firebase/firestore";
 import { db } from "@/firebaseSetup";
 
 type Props = {};
@@ -14,7 +14,8 @@ const Dashboard = (props: Props) => {
 
     try {
       const docRef = await addDoc(collection(db, "deck"), {
-          
+          name: "chinese 1",
+          updatedAt: new Date()
       });
       console.log("Document written with ID: ", docRef.id);
   } catch (error) {

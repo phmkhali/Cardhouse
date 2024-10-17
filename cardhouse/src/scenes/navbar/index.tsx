@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/solid";
 import NavLink from "./NavLink";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SelectedPage } from "@/shared/types";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import ActionButton from "@/shared/ActionButton";
@@ -20,6 +20,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
   const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   const [user, setUser] = useState<any>(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   // Monitor auth state and get user data
   useEffect(() => {
@@ -40,6 +41,7 @@ const Navbar = ({ selectedPage, setSelectedPage }: Props) => {
       .then(() => {
         setUser(null);
         console.log("User signed out successfully");
+        navigate("/home");
       })
       .catch((error) => console.error("Error signing out: ", error));
   };

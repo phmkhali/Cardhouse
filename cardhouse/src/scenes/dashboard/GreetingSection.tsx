@@ -1,39 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
 import PlantGif from "@/assets/four_plants.gif";
 
-type GreetingSectionProps = {
+type Props = {
   displayName: string | null;
-  onAddDeckClick: () => void;
+  onAddDeckClick: (deckName: string) => Promise<void>;
 };
 
-const GreetingSection: React.FC<GreetingSectionProps> = ({
-  displayName,
-  onAddDeckClick,
-}) => {
+const GreetingSection: React.FC<Props> = ({ displayName, onAddDeckClick }) => {
+  const [deckName, setDeckName] = useState<string>("");
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDeckName(e.target.value);
+  };
+
+  const handleButtonClick = () => {
+    onAddDeckClick(deckName); // Pass the entered deck name to the parent component
+    setDeckName(""); // Clear the input field after adding
+  };
+
   return (
-    <div className="w-[90%] h-auto flex flex-col md:flex-row md:items-center md:justify-between">
+    <div className="w-[90%] h-auto flex flex-col md:flex-row md:items-center justify-start">
       {/* GREETING TEXT */}
-      <div className="h-auto flex flex-col overflow-hidden gap-2 ">
+      <div className="basis-2/5 h-auto flex flex-col overflow-hidden gap-2">
         <h1 className="text-4xl font-bold text-secondary">
           Hi {displayName ? displayName : "Guest"}!
         </h1>
         <p className="text-lg">
           Happy to see you here! Let's have a productive study session ^^
         </p>
+
+        {/* Input field for deck name */}
+        <input
+          type="text"
+          value={deckName}
+          onChange={handleInputChange}
+          placeholder="Enter deck name"
+          className="w-[200px] h-[40px] mb-2 px-2 border border-gray-300 rounded"
+        />
+
+        <button
+          onClick={handleButtonClick}
+          className="w-[200px] h-[50px] bg-primary text-white font-bold rounded-full py-2 px-4"
+        >
+          Add Deck
+        </button>
       </div>
-      {/* ADD BUTTON DIV */}
-      <div className="flex justify-start mt-6">
-      <button
-        onClick={onAddDeckClick}
-        className="w-[200px] h-[50px] bg-flower-pink text-white font-bold rounded-full py-2 px-4"
-      >
-        Create deck
-      </button>
-      </div>
-      {/* PLANT DIV */}
-      <div className="flex w-auto justify-end ">
+
+      {/* PLANT GIF */}
+      <div>
         <img
-          className="object-contain h-[150px]"
+          className="object-contain h-[130px]"
           src={PlantGif}
           alt="Animated Plants"
         />

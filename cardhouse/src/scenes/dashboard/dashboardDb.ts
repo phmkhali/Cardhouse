@@ -1,12 +1,18 @@
-import { collection, addDoc, query, where, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 import { auth, db } from "@/firebaseSetup";
 import { Deck } from "@/shared/types";
 
 // Function to add a deck
-export const addDeck = async () => {
+export const addDeck = async (deckName: string) => {
   try {
     const docRef = await addDoc(collection(db, "deck"), {
-      name: "japanese 1",
+      name: deckName,
       updatedAt: new Date(),
       userId: auth.currentUser?.uid || "unknown",
     });
@@ -16,7 +22,9 @@ export const addDeck = async () => {
   }
 };
 
-export const subscribeToDecks = (setDeckList: React.Dispatch<React.SetStateAction<Deck[]>>) => {
+export const subscribeToDecks = (
+  setDeckList: React.Dispatch<React.SetStateAction<Deck[]>>
+) => {
   const q = query(
     collection(db, "deck"),
     where("userId", "==", auth.currentUser?.uid || "unknown")

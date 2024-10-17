@@ -16,7 +16,8 @@ const Dashboard: React.FC<Props> = ({ selectedPage, setSelectedPage }) => {
   const [deckList, setDeckList] = useState<Deck[]>([]);
   const colors = ["bg-flower-pink", "bg-primary", "bg-accent"];
 
-  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+  const getRandomColor = () =>
+    colors[Math.floor(Math.random() * colors.length)];
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -36,12 +37,21 @@ const Dashboard: React.FC<Props> = ({ selectedPage, setSelectedPage }) => {
     return () => unsubscribeDecks(); // Cleanup listener
   }, []);
 
+  const handleAddDeck = async (deckName: string) => {
+    if (deckName.trim()) {
+      await addDeck(deckName);
+    }
+  };
+
   return (
     <section
       id="dashboard"
       className="h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mt-[130px] md:mx-6"
     >
-      <GreetingSection displayName={displayName} onAddDeckClick={addDeck} />
+      <GreetingSection
+        displayName={displayName}
+        onAddDeckClick={handleAddDeck}
+      />
 
       {/* DECKS GALLERY */}
       <h2 className="w-[90%] font-bold text-2xl mt-4 md:mt-10">Study Decks</h2>

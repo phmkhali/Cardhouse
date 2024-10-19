@@ -6,6 +6,7 @@ import LandingPage from "./scenes/landing-page";
 import Dashboard from "./scenes/dashboard";
 import Login from "./scenes/account/login";
 import SignUp from "./scenes/account/signup";
+import Deck from "./scenes/deck";
 
 function App() {
   const [selectedPage, setSelectedPage] = useState<SelectedPage>(
@@ -49,6 +50,7 @@ function App() {
               />
             }
           />
+          <Route path="/deck/:id" element={<Deck />} />
         </Routes>
       </div>
     </Router>

@@ -4,7 +4,7 @@ import { auth } from "@/firebaseSetup";
 import { Deck, SelectedPage } from "@/shared/types";
 import DeckList from "./DeckList";
 import GreetingSection from "./GreetingSection";
-import { addDeck, subscribeToDecks } from "@/scenes/dashboard/dashboardDb";
+import { addDeck, subscribeToDecks } from "@/services/dashboard-service";
 
 type Props = {
   selectedPage: SelectedPage;

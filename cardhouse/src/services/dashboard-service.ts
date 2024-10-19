@@ -33,7 +33,7 @@ export const subscribeToDecks = (
   return onSnapshot(q, (querySnapshot) => {
     const decks: Deck[] = [];
     querySnapshot.forEach((doc) => {
-      decks.push({ id: doc.id, name: doc.data().name });
+      decks.push({ id: doc.id, name: doc.data().name , userId: doc.data().userId});
     });
     setDeckList(decks);
   });

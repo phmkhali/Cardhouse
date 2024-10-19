@@ -1,11 +1,21 @@
-import React from 'react'
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-type Props = {}
+const Deck: React.FC = () => {
+  const { id } = useParams<{ id: string }>(); 
+  const [deckName, setDeckName] = useState<string>("");
 
-const index = (props: Props) => {
+  useEffect(() => {
+    if (id) {
+      setDeckName(id); 
+    }
+  }, [id]);
+
   return (
-    <div>index</div>
-  )
-}
+    <div>
+      <h1>Deck: {deckName}</h1>
+    </div>
+  );
+};
 
-export default index
+export default Deck;

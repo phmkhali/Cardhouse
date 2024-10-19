@@ -14,6 +14,7 @@ export interface UserType {
 export interface Deck {
   id: string;
   name: string;
+  userId: string;
 }
 
 export interface Card {

@@ -22,7 +22,7 @@ const GreetingSection: React.FC<Props> = ({ displayName, onAddDeckClick }) => {
     <div className="w-[90%] h-auto flex flex-col md:flex-row md:items-center justify-start">
       {/* GREETING TEXT */}
       <div className="basis-2/5 h-auto flex flex-col overflow-hidden gap-2">
-        <h1 className="text-4xl font-bold text-secondary">
+        <h1 className="text-4xl font-bold font-poppins text-secondary">
           Hi {displayName ? displayName : "Guest"}!
         </h1>
         <p className="text-lg">

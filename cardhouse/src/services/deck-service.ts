@@ -1,15 +1,20 @@
-import {
-    collection,
-    addDoc,
-    query,
-    where,
-    onSnapshot,
-    getDoc,
-  } from "firebase/firestore";
-  import { auth, db } from "@/firebaseSetup";
-  import { Deck } from "@/shared/types";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/firebaseSetup";
+import { Deck } from "@/shared/types";
 
-  const q = query(
-    collection(db, "deck"),
-    where("userId", "==", auth.currentUser?.uid || "unknown")
-  );
+export const getDeckById = async (id: string): Promise<Deck | null> => {
+  try {
+    const deckRef = doc(db, "deck", id);
+    const deckSnapshot = await getDoc(deckRef);
+
+    if (deckSnapshot.exists()) {
+      return deckSnapshot.data() as Deck;
+    } else {
+      console.log("No such deck found!");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error fetching deck:", error);
+    return null;
+  }
+};

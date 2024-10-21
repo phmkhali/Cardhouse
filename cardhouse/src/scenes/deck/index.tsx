@@ -25,7 +25,7 @@ const Deck: React.FC = () => {
     <section
       id="deck"
       className={
-        "h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mx-2 mt-[130px]"
+        "h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mx-2 mt-[130px] overflow-x-hidden"
       }
     >
       <h1 className="text-4xl font-poppins font-bold text-primary">
@@ -54,10 +54,10 @@ const Deck: React.FC = () => {
         Add Flashcard
       </button>
       {/* CARD CONTENT AND IMAGE */}
-      <div className="flex flex-row w-4/5 h-[100%]m-6 p-6 rounded-2xl justify-between">
+      <div className="flex flex-row w-4/5 h-[100%] m-6 p-6 rounded-2xl gap-12">
         {/* CARDS */}
-        <div className="font-bold basis-3/5">
-          <h2 className="text-2xl text-text">Cards in this deck</h2>
+        <div className="w-2/3">
+          <h2 className="text-2xl mb-2">Cards in this deck</h2>
           <CardTile
             cardFront={"1"}
             cardBack={"2"}
@@ -92,7 +92,7 @@ const Deck: React.FC = () => {
             deckId={0}
           ></CardTile>
                     <CardTile
-            cardFront={"1skjdfnsjkdfnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsdkjfnsdkjfbndskjfbsdkjfbsdkjfbsdkjfbsdkjfbskjfbskdjfbskdjfb"}
+            cardFront={"1skjdfnsjkdfnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsdkjfnsdnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnskjfbndskjfbsdkjfbsdkjfbsdkjfbsdkjfbskjfbskdjfbskdjfb"}
             cardBack={"2"}
             onEdit={function (cardId: number): void {
               throw new Error("Function not implemented.");
@@ -105,9 +105,10 @@ const Deck: React.FC = () => {
         </div>
         {/* IMAGE */}
         <div className="">
-          <img src={Farming} className="w-auto object-contain h-full" />
+          <img src={Farming} className="w-full object-contain h-full" />
         </div>
       </div>
+
     </section>
   );
 };

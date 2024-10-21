@@ -25,7 +25,7 @@ const Deck: React.FC = () => {
     <section
       id="deck"
       className={
-        "h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mx-2 mt-[130px] overflow-x-hidden"
+        "h-auto w-[100wv] md:h-[100vh] flex flex-col items-center mx-2 mt-[130px]"
       }
     >
       <h1 className="text-4xl font-poppins font-bold text-primary">

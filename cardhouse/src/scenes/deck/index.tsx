@@ -56,7 +56,7 @@ const Deck: React.FC = () => {
         Add Flashcard
       </button>
       {/* CARD CONTENT AND IMAGE */}
-      <div className="flex flex-col md:flex-row w-full bg-red-200 md:w-4/5 h-[100%] m-6 p-6 rounded-2xl gap-12">
+      <div className="flex flex-col md:flex-row w-full  md:w-4/5 h-[100%] m-6 p-6 rounded-2xl gap-12">
         {/* CARDS */}
         <div className="w-2/3">
           <h2 className="text-2xl mb-2">Cards in this deck</h2>
@@ -70,6 +70,7 @@ const Deck: React.FC = () => {
               throw new Error("Function not implemented.");
             }}
             deckId={0}
+            cardId={0}
           ></CardTile>
         </div>
         {isAboveMediumScreens ? (

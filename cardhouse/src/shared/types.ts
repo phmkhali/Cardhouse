@@ -15,6 +15,7 @@ export interface Deck {
   id: string;
   name: string;
   userId: string;
+  cards?: Card[];
 }
 
 export interface Card {

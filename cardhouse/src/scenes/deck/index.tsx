@@ -69,39 +69,6 @@ const Deck: React.FC = () => {
             }}
             deckId={0}
           ></CardTile>
-                    <CardTile
-            cardFront={"1"}
-            cardBack={"2"}
-            onEdit={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            onDelete={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            deckId={0}
-          ></CardTile>
-                    <CardTile
-            cardFront={"1"}
-            cardBack={"2"}
-            onEdit={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            onDelete={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            deckId={0}
-          ></CardTile>
-                    <CardTile
-            cardFront={"1skjdfnsjkdfnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsdkjfnsdnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnsnsdjkfnskjfnjsdkfnksjdnfkjsdnfkjsdfndskjfnskjfbndskjfbsdkjfbsdkjfbsdkjfbsdkjfbskjfbskdjfbskdjfb"}
-            cardBack={"2"}
-            onEdit={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            onDelete={function (cardId: number): void {
-              throw new Error("Function not implemented.");
-            }}
-            deckId={0}
-          ></CardTile>
         </div>
         {/* IMAGE */}
         <div className="">

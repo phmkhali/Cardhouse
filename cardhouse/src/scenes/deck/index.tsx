@@ -3,10 +3,12 @@ import { useEffect, useState } from "react";
 import { getDeckById } from "@/services/deck-service";
 import Farming from "@/assets/farming.svg";
 import CardTile from "./CardTile";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 const Deck: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [deckName, setDeckName] = useState<string>("");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1060px)");
   const inputStyling =
     "w-[250px] h-[80px] px-2 border border-gray-300 rounded text-center text-lg rounded-2xl";
   useEffect(() => {
@@ -54,7 +56,7 @@ const Deck: React.FC = () => {
         Add Flashcard
       </button>
       {/* CARD CONTENT AND IMAGE */}
-      <div className="flex flex-row w-4/5 h-[100%] m-6 p-6 rounded-2xl gap-12">
+      <div className="flex flex-col md:flex-row w-full bg-red-200 md:w-4/5 h-[100%] m-6 p-6 rounded-2xl gap-12">
         {/* CARDS */}
         <div className="w-2/3">
           <h2 className="text-2xl mb-2">Cards in this deck</h2>
@@ -70,12 +72,17 @@ const Deck: React.FC = () => {
             deckId={0}
           ></CardTile>
         </div>
-        {/* IMAGE */}
-        <div className="">
-          <img src={Farming} className="w-full object-contain h-full" />
-        </div>
+        {isAboveMediumScreens ? (
+          <>
+            {/* IMAGE */}
+            <div className="">
+              <img src={Farming} className="w-full object-contain h-full" />
+            </div>
+          </>
+        ) : (
+          <div></div>
+        )}
       </div>
-
     </section>
   );
 };

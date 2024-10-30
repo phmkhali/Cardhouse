@@ -20,13 +20,16 @@ export const getDeckById = async (id: string): Promise<Deck | null> => {
 };
 
 // Add a new card to a deck
-export const addCardToDeck = async (deckId: string, front: string, back: string): Promise<void> => {
+export const addCardPair = async (front: string, back: string, deckId: string) => {
   try {
-    const cardsCollectionRef = collection(db, "deck", deckId, "cards");
-    await addDoc(cardsCollectionRef, { front, back });
-    console.log("Card added successfully");
+    const docRef = await addDoc(collection(db, "card"), {
+      frontCard: front,
+      backCard: back,
+      deckId: deckId,
+    });
+    console.log("Document written with ID: ", docRef.id);
   } catch (error) {
-    console.error("Error adding card:", error);
+    console.error("Error adding document: ", error);
   }
 };
 

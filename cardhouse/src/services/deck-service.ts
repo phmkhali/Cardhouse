@@ -1,4 +1,4 @@
-import { addDoc, collection, doc, getDoc, updateDoc, deleteDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getDoc, updateDoc, deleteDoc, getDocs, query, where } from "firebase/firestore";
 import { auth, db } from "@/firebaseSetup";
 import { Deck, Card } from "@/shared/types";
 
@@ -16,6 +16,23 @@ export const getDeckById = async (id: string): Promise<Deck | null> => {
   } catch (error) {
     console.error("Error fetching deck:", error);
     return null;
+  }
+};
+
+export const getCardsByDeckId = async (deckId: string): Promise<Card[]> => {
+  try {
+    const q = query(collection(db, "card"), where("deckId", "==", deckId));
+    const querySnapshot = await getDocs(q);
+
+    const cards: Card[] = [];
+    querySnapshot.forEach((doc) => {
+      cards.push({ id: doc.id, ...doc.data() } as Card);
+    });
+
+    return cards;
+  } catch (error) {
+    console.error("Error fetching cards:", error);
+    return [];
   }
 };
 

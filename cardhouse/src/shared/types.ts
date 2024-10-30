@@ -19,13 +19,12 @@ export interface Deck {
 }
 
 export interface Card {
-  difficulty: number;
-  due: Date;
-  elapsed_days: number;
-  lapses: number;
-  last_review?: Date;
-  reps: number;
-  scheduled_days: number;
-  stability: number;
-  state: State;
+  id: string;           
+  frontCard: string;    
+  backCard: string;       
+  deckId: string;         
+  difficulty?: string;    
+  due?: Date;             
+  elapsed_days?: number;  
+  lapses?: number;        
 }

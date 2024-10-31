@@ -51,9 +51,9 @@ export const addCardPair = async (front: string, back: string, deckId: string) =
 };
 
 // Edit an existing card
-export const editCardInDeck = async (deckId: string, cardId: string, front: string, back: string): Promise<void> => {
+export const editCardInDeck = async (cardId: string, front: string, back: string): Promise<void> => {
   try {
-    const cardRef = doc(db, "deck", deckId, "cards", cardId);
+    const cardRef = doc(db, "cards", cardId);
     await updateDoc(cardRef, { front, back });
     console.log("Card updated successfully");
   } catch (error) {
@@ -62,9 +62,9 @@ export const editCardInDeck = async (deckId: string, cardId: string, front: stri
 };
 
 // Delete a card from a deck
-export const deleteCardFromDeck = async (deckId: string, cardId: string): Promise<void> => {
+export const deleteCardFromDeck = async (cardId: string): Promise<void> => {
   try {
-    const cardRef = doc(db, "deck", deckId, "cards", cardId);
+    const cardRef = doc(db, "cards", cardId);
     await deleteDoc(cardRef);
     console.log("Card deleted successfully");
   } catch (error) {

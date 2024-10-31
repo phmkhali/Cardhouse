@@ -1,4 +1,6 @@
 import React from "react";
+import { BsFillPencilFill } from "react-icons/bs"; 
+import { BsFillTrashFill } from "react-icons/bs";
 
 type Props = {
   cardId: number; // Add cardId here to pass it to onEdit and onDelete
@@ -21,20 +23,20 @@ const CardTile = ({ cardId, cardFront, cardBack, onEdit, onDelete }: Props) => {
       <div className={cardStyling}>
         <h3>{cardBack}</h3>
       </div>
-      <div className="flex justify-end gap-2 mt-2">
+      <div className="flex flex-col justify-around">
         {/* Edit Button */}
         <button
-          className="bg-blue-500 text-white px-4 py-2 rounded-md"
+          className="text-accent text-2xl"
           onClick={() => onEdit(cardId)}
         >
-          Edit
+          <BsFillPencilFill />
         </button>
         {/* Delete Button */}
         <button
-          className="bg-red-500 text-white px-4 py-2 rounded-md"
+          className=" text-flower-pink text-2xl"
           onClick={() => onDelete(cardId)}
         >
-          Delete
+          <BsFillTrashFill />
         </button>
       </div>
     </div>
